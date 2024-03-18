@@ -1,0 +1,16 @@
+@mixin marginX($marginX) {
+  margin: 0px $marginX;
+  width: calc(100vw - 2 * ($marginX));
+}
+@mixin alignCenter() {
+  display: flex;
+  align-items: center;
+}
+@mixin justyfyBetween() {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}

@@ -1,8 +1,6 @@
-$orange: hsl(26, 100%, 55%);
-$paleOrange: hsl(25, 100%, 94%);
-$veryDarkBlue: hsl(220, 13%, 13%);
-$white: hsl(0, 0%, 100%);
-$black: hsl(0, 0%, 0%);
+@import "mixin";
+@import "color";
+@import "keyframe";
 @import "header";
 @import "header_responsive";
 
@@ -16,14 +14,25 @@ $black: hsl(0, 0%, 0%);
 .hover-opacity:hover {
   opacity: 0.5;
 }
-.product {
-  @include marginX(10vw);
-  margin-top: 60px;
-  margin-bottom: 80px;
-  display: flex;
-  justify-content: space-around;
+.slideIcon {
+  @include size(40px, 40px);
+  border-radius: 50%;
+  background-color: $white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  justify-content: center;
   align-items: center;
+}
+.product {
+  @include marginX(20vw);
+  margin-top: 50px;
+  margin-bottom: 80px;
+  display: grid;
   position: relative;
+  grid-template-columns: 27vw 27vw;
+  column-gap: 6vw;
   &--viewImage {
     display: none;
     position: absolute;
@@ -31,14 +40,11 @@ $black: hsl(0, 0%, 0%);
     left: 50%;
     top: -20%;
     transform: translate(-50%, 10%);
-    width: 28vw;
-    height: 80vh;
-    transition: all 0.3s ease;
+    @include size(28vw, 80vh);
+    transition: all 0.5s ease;
     animation: appear 0.5s ease-in-out;
-    > svg {
+    .close-icon {
       float: right;
-      width: 14px;
-      height: 15px;
       margin-bottom: 20px;
       cursor: pointer;
       &:hover {
@@ -51,32 +57,25 @@ $black: hsl(0, 0%, 0%);
       width: 100%;
       row-gap: 4%;
       &__large {
-        div {
+        &__img {
+          width: 100%;
+        }
+        &__icon {
           display: flex;
-          cursor: pointer;
-          &:hover svg {
-            path {
-              stroke: $orange;
-            }
-          }
         }
         &__previous {
           left: -22px;
         }
         &__next {
           right: -22px;
-          img {
-            left: 2px;
-          }
         }
       }
       &__small {
         justify-content: space-evenly;
-        div {
-          width: 16%;
-          height: 94%;
+        &__container {
+          @include size(16%, 94%);
           border-radius: 7px;
-          img {
+          &__img {
             border-radius: 5px;
           }
         }
@@ -90,57 +89,49 @@ $black: hsl(0, 0%, 0%);
     display: block;
   }
   &__image {
-    width: 36vw;
+    width: 27vw;
     display: grid;
     grid-template-rows: auto auto;
-    row-gap: 5%;
-    img {
-      cursor: pointer;
-    }
+    row-gap: 4%;
     &__large {
       position: relative;
-      div {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: $white;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 30%;
+      &__icon {
+        cursor: pointer;
+        &:hover svg {
+          path {
+            stroke: $orange;
+          }
         }
       }
       &__previous {
+        @extend .slideIcon;
         left: 3%;
       }
       &__next {
+        @extend .slideIcon;
         right: 3%;
       }
-      img {
+      &__img {
         width: 100%;
         border-radius: 5%;
+        cursor: pointer;
       }
     }
     &__small {
-      display: flex;
-      justify-content: space-between;
-      div {
-        width: 20%;
-        height: 96%;
+      @include justyfyBetween();
+      &__container {
+        @include size(20%, 96%);
         border-radius: 18px;
         background-color: $white;
-        img {
+        cursor: pointer;
+        &__img {
           width: 100%;
           border-radius: 14px;
           @extend .hover-opacity;
         }
         &:first-child {
           border: 4px solid $orange;
-          img {
+          .product__image__small__container__img {
             opacity: 0.5;
           }
         }
@@ -148,40 +139,40 @@ $black: hsl(0, 0%, 0%);
     }
   }
   &__inf {
-    width: 36vw;
+    width: 27vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     &__brand {
       color: hsl(26, 100%, 55%);
       font-weight: 700;
       letter-spacing: 3px;
     }
     &__name {
-      font-size: 44px;
+      font-size: 30px;
       color: hsl(0, 0%, 0%);
-      padding: 20px 0px;
+      padding: 16px 0px;
     }
     &__desc {
       color: hsl(219, 9%, 45%);
-      padding: 20px 0px;
+      padding: 14px 0px;
     }
     &__price {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
       &__new {
         color: hsl(0, 0%, 0%);
         font-size: 28px;
         font-weight: 700;
         padding: 10px 0px;
-        display: flex;
-        align-items: center;
+        @include alignCenter();
         &::after {
           content: "50%";
           font-size: 16px;
           color: hsl(26, 100%, 55%);
           background-color: hsl(25, 100%, 94%);
           margin-left: 20px;
-          width: 45px;
-          height: 22px;
-          display: inline-flex;
-          align-items: center;
+          @include size(45px, 22px);
+          @include alignCenter();
           justify-content: center;
           border-radius: 6px;
         }
@@ -194,23 +185,23 @@ $black: hsl(0, 0%, 0%);
       }
     }
 
-    &__btns {
-      display: flex;
-      justify-content: space-between;
+    &__btn {
+      @include justyfyBetween();
       &__quantity {
-        display: flex;
+        @include alignCenter();
         flex: 2;
-        align-items: center;
         justify-content: space-around;
         margin-right: 5%;
         font-size: 24px;
         background-color: $lightGrayishBlue;
         border-radius: 8px;
-        img {
+        &__btn {
+          @include alignCenter();
           @extend .btn;
           @extend .hover-opacity;
+          padding: 16px 4px;
         }
-        p {
+        &__number {
           font-size: 20px;
           font-weight: 400;
         }
@@ -225,7 +216,7 @@ $black: hsl(0, 0%, 0%);
         background-color: hsl(26, 100%, 55%);
         flex: 3;
         box-shadow: 0px 26px 30px -10px hsla(26, 100%, 55%, 0.2);
-        img {
+        &__icon {
           margin-right: 20px;
         }
       }
@@ -233,19 +224,3 @@ $black: hsl(0, 0%, 0%);
   }
 }
 @import "product_detail_responsive";
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes disAppear {
-  100% {
-    opacity: 0;
-  }
-  0% {
-    opacity: 1;
-  }
-}

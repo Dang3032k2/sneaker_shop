@@ -1,20 +1,12 @@
 @import "reset";
-$darkGrayishBlue: hsl(219, 9%, 45%);
-$grayishBlue: hsl(220, 14%, 75%);
-$lightGrayishBlue: hsl(223, 64%, 98%);
 
-@mixin marginX($marginX) {
-  margin: 0px $marginX;
-  width: calc(100vw - 2 * ($marginX));
-}
 .not-overflow {
   overflow-y: hidden;
 }
 .overlay {
   position: fixed;
   display: none;
-  width: 100%;
-  height: 150%;
+  @include size(100%, 150%);
   position: absolute;
   background-color: $black;
   opacity: 0.8;
@@ -27,53 +19,67 @@ $lightGrayishBlue: hsl(223, 64%, 98%);
 .overlay--open {
   display: block;
 }
-header {
+.header {
   @include marginX(10vw);
   height: 80px;
   border-bottom: 2px solid $lightGrayishBlue;
-  display: flex;
+  @include alignCenter();
   justify-content: space-between;
-  align-items: center;
-  .header__menu {
-    display: flex;
-    align-items: center;
-    img {
+  &__menu {
+    @include alignCenter();
+    &__icon {
       display: none;
     }
-    h1 {
+    &__brand {
       font-size: 26px;
       font-weight: 700;
+      cursor: pointer;
     }
-    .header__menu__drawer {
-      ul {
+    &__drawer {
+      &__icon {
+        display: none;
+      }
+      &__ul {
         list-style-type: none;
         padding-left: 40px;
-        li {
+        &__li {
           display: inline-block;
-          padding: 30px 20px;
-          cursor: pointer;
-          border-bottom: 2px solid $lightGrayishBlue;
-          transition: all 0.3s ease;
-          &:hover {
-            font-weight: 700;
-            border-bottom: 2px solid $orange;
+          font-size: 0;
+          &__a {
+            display: inline-block;
+            text-align: center;
+            color: $darkGrayishBlue;
+            text-decoration: none;
+            padding: 30px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid $lightGrayishBlue;
+            transition: all 0.3s ease;
+            &:hover {
+              font-weight: 700;
+              border-bottom: 2px solid $orange;
+            }
+            &::before {
+              display: block;
+              content: attr(title);
+              font-weight: 700;
+              height: 0;
+              overflow: hidden;
+              visibility: hidden;
+            }
           }
         }
       }
     }
   }
 
-  .header__cart-avt {
-    display: flex;
-    align-items: center;
+  &__cart-avt {
+    @include alignCenter();
     &__cart {
       position: relative;
-      > img {
-        @extend .btn;
-      }
+      cursor: pointer;
       &__widget {
         position: absolute;
-        width: 352px;
+        width: 340px;
         background-color: $white;
         z-index: 5;
         top: 36px;
@@ -84,56 +90,40 @@ header {
         visibility: hidden;
         transition: all 0.5s ease-in;
         animation: slideOut 0.5s forwards;
-        > div {
-          padding: 22px;
-          button {
-            @extend .btn;
-            background-color: $orange;
-            color: $white;
-            padding: 12px;
-            width: 100%;
-            transition: all 0.3s ease;
-            &:hover {
-              opacity: 0.5;
-            }
-          }
-        }
         &__header {
+          padding: 20px;
           border-bottom: 2px solid $lightGrayishBlue;
           font-weight: 700;
         }
         &__body {
-          display: flex;
-          align-items: center;
+          @include alignCenter();
           justify-content: center;
           min-height: 160px;
           margin-bottom: 10px;
-          > p {
+          &__empty {
             display: none;
           }
-          > div {
+          &__inner {
             display: grid;
             grid-template-rows: 50px 50px;
-            row-gap: 24px;
+            row-gap: 20px;
             width: 300px;
-            > div {
-              display: flex;
+            &__item {
+              @include alignCenter();
               justify-content: space-between;
-              align-items: center;
               .item-image {
                 width: 50px;
                 border-radius: 4px;
               }
-              > div {
-                display: flex;
+              .cart-item-text {
+                @include justyfyBetween();
                 flex-direction: column;
-                justify-content: space-between;
-                height: 90%;
                 color: $darkGrayishBlue;
-                p {
+                height: 90%;
+                &__name {
                   font-size: 15px;
                 }
-                span {
+                &__price {
                   font-size: 15px;
                   &:nth-of-type(2) {
                     color: $black;
@@ -146,28 +136,36 @@ header {
                 cursor: pointer;
               }
             }
+            &__btn {
+              @extend .btn;
+              background-color: $orange;
+              color: $white;
+              padding: 12px;
+              width: 100%;
+              transition: all 0.3s ease;
+              &:hover {
+                opacity: 0.5;
+              }
+            }
           }
         }
       }
       &::after {
         content: "3";
-        width: 16px;
-        height: 10px;
+        @include size(16px, 10px);
         color: hsl(0, 0%, 100%);
         background-color: hsl(26, 100%, 55%);
         position: absolute;
         top: -2px;
         left: 11px;
-        display: flex;
-        align-items: center;
+        @include alignCenter();
         justify-content: center;
         font-size: 9px;
         border-radius: 80px;
       }
       &::before {
         content: "";
-        width: 30px;
-        height: 100px;
+        @include size(30px, 100px);
         position: absolute;
       }
       &:hover .header__cart-avt__cart__widget {
@@ -186,25 +184,5 @@ header {
         border-radius: 50%;
       }
     }
-  }
-}
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translate(46%, 20%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(46%, 0%);
-  }
-}
-@keyframes slideOut {
-  0% {
-    opacity: 1;
-    transform: translate(46%, 0%);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(46%, 20%);
   }
 }
