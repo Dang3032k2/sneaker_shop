@@ -14,213 +14,200 @@
 .hover-opacity:hover {
   opacity: 0.5;
 }
-.slideIcon {
-  @include size(40px, 40px);
-  border-radius: 50%;
-  background-color: $white;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: none;
-  justify-content: center;
-  align-items: center;
+.close-icon {
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover {
+    path {
+      fill: $orange;
+    }
+  }
+}
+.main {
+  @include size(100%, 80vh);
+  @include flexBox(center, center);
 }
 .product {
-  @include marginX(20vw);
-  margin-top: 50px;
-  margin-bottom: 80px;
-  display: grid;
+  width: 60%;
+  @include flexBox(space-between, center);
   position: relative;
-  grid-template-columns: 27vw 27vw;
-  column-gap: 6vw;
-  &--viewImage {
+  &__viewImage {
+    @include flexBox(unset, end);
+    flex-direction: column;
     display: none;
     position: absolute;
     z-index: 5;
     left: 50%;
-    top: -20%;
+    top: -18%;
     transform: translate(-50%, 10%);
-    @include size(28vw, 80vh);
+    @include size(40%, unset);
     transition: all 0.5s ease;
-    animation: appear 0.5s ease-in-out;
-    .close-icon {
-      float: right;
-      margin-bottom: 20px;
-      cursor: pointer;
-      &:hover {
-        path {
-          fill: $orange;
-        }
+    animation: appear 0.5s forwards;
+    .product__icon {
+      display: flex;
+      &--previous {
+        left: -22px;
+      }
+      &--next {
+        right: -22px;
       }
     }
-    .product__image {
-      width: 100%;
-      row-gap: 4%;
-      &__large {
-        &__img {
-          width: 100%;
-        }
-        &__icon {
-          display: flex;
-        }
-        &__previous {
-          left: -22px;
-        }
-        &__next {
-          right: -22px;
-        }
-      }
-      &__small {
-        justify-content: space-evenly;
-        &__container {
-          @include size(16%, 94%);
-          border-radius: 7px;
-          &__img {
-            border-radius: 5px;
-          }
-        }
-      }
+    .product__small {
+      @include flexBox(space-evenly, unset);
     }
-    &--disAppear {
-      animation: appear 0.3s forwards;
+    .product__small-container {
+      @include size(18%, auto);
+      border-radius: 14px;
+    }
+    .product__small-img {
+      border-radius: 11px;
     }
   }
   .image-modal-open {
-    display: block;
+    display: flex;
+  }
+  &__images {
+    @include size(46%, 100%);
+    flex: 1;
   }
   &__image {
-    width: 27vw;
-    display: grid;
-    grid-template-rows: auto auto;
-    row-gap: 4%;
-    &__large {
-      position: relative;
-      &__icon {
-        cursor: pointer;
-        &:hover svg {
-          path {
-            stroke: $orange;
-          }
-        }
-      }
-      &__previous {
-        @extend .slideIcon;
-        left: 3%;
-      }
-      &__next {
-        @extend .slideIcon;
-        right: 3%;
-      }
-      &__img {
-        width: 100%;
-        border-radius: 5%;
-        cursor: pointer;
+    width: 80%;
+  }
+  &__large {
+    position: relative;
+    padding-bottom: 20px;
+  }
+  &__large-img {
+    width: 100%;
+    border-radius: 5%;
+    cursor: pointer;
+  }
+  &__small {
+    @include flexBox(space-between, unset);
+  }
+  &__small-container {
+    @include size(20%, auto);
+    border-radius: 18px;
+    background-color: $white;
+    cursor: pointer;
+    &:first-child {
+      border: 4px solid $orange;
+      .product__small-img {
+        opacity: 0.5;
       }
     }
-    &__small {
-      @include justyfyBetween();
-      &__container {
-        @include size(20%, 96%);
-        border-radius: 18px;
-        background-color: $white;
-        cursor: pointer;
-        &__img {
-          width: 100%;
-          border-radius: 14px;
-          @extend .hover-opacity;
-        }
-        &:first-child {
-          border: 4px solid $orange;
-          .product__image__small__container__img {
-            opacity: 0.5;
-          }
-        }
+  }
+  &__small-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    @extend .hover-opacity;
+  }
+  &__icon {
+    cursor: pointer;
+    @include size(40px, 40px);
+    border-radius: 50%;
+    background-color: $white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    @include flexBox(center, center);
+    display: none;
+    &:hover svg {
+      path {
+        stroke: $orange;
       }
     }
+    &--previous {
+      left: 3%;
+    }
+    &--next {
+      right: 3%;
+    }
+  }
+
+  &__inf-container {
+    flex: 1;
+    @include flexBox(center, end);
+    flex-direction: column;
   }
   &__inf {
-    width: 27vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    &__brand {
+    width: 90%;
+  }
+  &__brand {
+    color: hsl(26, 100%, 55%);
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+  &__name {
+    font-size: 30px;
+    color: hsl(0, 0%, 0%);
+    padding: 16px 0px;
+  }
+  &__desc {
+    color: hsl(219, 9%, 45%);
+    padding: 14px 0px;
+  }
+  &__price {
+    margin-bottom: 40px;
+  }
+  &__new-price {
+    color: hsl(0, 0%, 0%);
+    font-size: 28px;
+    font-weight: 700;
+    padding: 10px 0px;
+    @include flexBox(unset, center);
+    &::after {
+      content: "50%";
+      font-size: 16px;
       color: hsl(26, 100%, 55%);
-      font-weight: 700;
-      letter-spacing: 3px;
-    }
-    &__name {
-      font-size: 30px;
-      color: hsl(0, 0%, 0%);
-      padding: 16px 0px;
-    }
-    &__desc {
-      color: hsl(219, 9%, 45%);
-      padding: 14px 0px;
-    }
-    &__price {
-      margin-bottom: 40px;
-      &__new {
-        color: hsl(0, 0%, 0%);
-        font-size: 28px;
-        font-weight: 700;
-        padding: 10px 0px;
-        @include alignCenter();
-        &::after {
-          content: "50%";
-          font-size: 16px;
-          color: hsl(26, 100%, 55%);
-          background-color: hsl(25, 100%, 94%);
-          margin-left: 20px;
-          @include size(45px, 22px);
-          @include alignCenter();
-          justify-content: center;
-          border-radius: 6px;
-        }
-      }
-      &__old {
-        color: hsl(220, 14%, 75%);
-        font-size: 18px;
-        text-decoration: line-through;
-        font-weight: 400;
-      }
-    }
-
-    &__btn {
-      @include justyfyBetween();
-      &__quantity {
-        @include alignCenter();
-        flex: 2;
-        justify-content: space-around;
-        margin-right: 5%;
-        font-size: 24px;
-        background-color: $lightGrayishBlue;
-        border-radius: 8px;
-        &__btn {
-          @include alignCenter();
-          @extend .btn;
-          @extend .hover-opacity;
-          padding: 16px 4px;
-        }
-        &__number {
-          font-size: 20px;
-          font-weight: 400;
-        }
-      }
-      &__addcart {
-        @extend .btn;
-        @extend .hover-opacity;
-        display: flex;
-        justify-content: center;
-        padding: 14px 30px;
-        color: hsl(0, 0%, 100%);
-        background-color: hsl(26, 100%, 55%);
-        flex: 3;
-        box-shadow: 0px 26px 30px -10px hsla(26, 100%, 55%, 0.2);
-        &__icon {
-          margin-right: 20px;
-        }
-      }
+      background-color: hsl(25, 100%, 94%);
+      margin-left: 20px;
+      @include size(45px, 22px);
+      @include flexBox(center, center);
+      border-radius: 6px;
     }
   }
+  &__old-price {
+    color: hsl(220, 14%, 75%);
+    font-size: 18px;
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+  &__btn {
+    @include flexBox(space-between, unset);
+  }
+  &__quantity {
+    @include flexBox(space-around, center);
+    flex: 2;
+    margin-right: 5%;
+    font-size: 24px;
+    background-color: $lightGrayishBlue;
+    border-radius: 8px;
+  }
+  &__quantity-btn {
+    @include flexBox(unset, center);
+    @extend .btn;
+    @extend .hover-opacity;
+    padding: 16px 4px;
+  }
+  &__cur-quantity {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  &__addcart {
+    @extend .btn;
+    @extend .hover-opacity;
+    @include flexBox(center, unset);
+    padding: 14px 30px;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(26, 100%, 55%);
+    flex: 3;
+    box-shadow: 0px 26px 30px -10px hsla(26, 100%, 55%, 0.2);
+  }
+  &__cart-icon {
+    margin-right: 20px;
+  }
 }
+
 @import "product_detail_responsive";

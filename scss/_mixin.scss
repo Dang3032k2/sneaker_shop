@@ -1,14 +1,12 @@
 @mixin marginX($marginX) {
   margin: 0px $marginX;
-  width: calc(100vw - 2 * ($marginX));
+  width: calc(100% - 2 * $marginX);
 }
-@mixin alignCenter() {
+
+@mixin flexBox($justifyContent, $alignItem) {
   display: flex;
-  align-items: center;
-}
-@mixin justyfyBetween() {
-  display: flex;
-  justify-content: space-between;
+  align-items: $alignItem;
+  justify-content: $justifyContent;
 }
 @mixin size($width, $height) {
   width: $width;

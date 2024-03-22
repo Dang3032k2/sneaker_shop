@@ -5,64 +5,52 @@
     border-bottom: none;
     &__menu {
       position: relative;
-      &__icon {
-        display: block;
-      }
-      &__brand {
-        font-size: 26px;
-        font-weight: 700;
-        position: relative;
-        top: -2px;
-        left: 20px;
-      }
-      &__drawer {
-        position: absolute;
-        top: -14px;
-        left: -100vw;
-        bottom: 0;
-        @include size(300px, 100vh);
-        background-color: $white;
-        z-index: 2;
-        padding: 30px;
-        transition: all 0.5s ease-in-out;
-        &__icon {
-          display: block;
-        }
-        &__ul {
-          padding-left: 0;
-          padding-top: 40px;
-          font-weight: 700;
-          &__li {
-            display: block;
-            padding: 16px 0;
-            border-bottom: none;
-            &__a {
-              padding: 0;
-              border-bottom: none;
-            }
-          }
-        }
-      }
-      .drawerOpen {
-        left: -5vw;
-      }
     }
-
-    &__cart-avt {
-      &__cart {
-        &__widget {
-          top: 56px;
-          right: 105px;
-        }
-        &:hover .header__cart-avt__cart__widget {
-          visibility: visible;
-          animation: slideIn 0.5s forwards;
-        }
-      }
-      &__avt {
-        width: 30px;
-        margin-left: 20px;
-      }
+    &__icon {
+      display: block;
     }
+    &__brand {
+      font-size: 26px;
+      font-weight: 700;
+      position: relative;
+      top: -2px;
+      left: 20px;
+    }
+    &__avt {
+      width: 30px;
+      margin-left: 20px;
+    }
+  }
+  .menu-drawer {
+    position: absolute;
+    top: -14px;
+    left: -100vw;
+    bottom: 0;
+    @include size(300px, 100vh);
+    background-color: $white;
+    z-index: 2;
+    padding: 30px;
+    transition: all 0.5s ease-in-out;
+    &__items {
+      padding-left: 0;
+      padding-top: 40px;
+      font-weight: 700;
+    }
+    &__item {
+      display: block;
+      padding: 16px 0;
+      border-bottom: none;
+    }
+    &__link {
+      padding: 0;
+      border-bottom: none;
+    }
+  }
+  .drawerOpen {
+    left: -5vw;
+  }
+  .cart-widget {
+    top: 56px;
+    right: 105px;
   }
 }
