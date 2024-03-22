@@ -8,229 +8,357 @@
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
-    <header>
+    <header class="header">
       <div class="header__menu">
-        <img
-          src="./assets/icons/icon-menu.svg"
-          alt="menu icon"
-          onclick="toggleMenu()"
-        />
-        <h1>sneakers</h1>
-        <div class="header__menu__drawer" id="menu-drawer">
+        <div>
           <img
-            src="./assets/icons/icon-close.svg"
-            alt="close"
+            src="./assets/icons/icon-menu.svg"
+            alt="menu icon"
+            class="header__icon"
             onclick="toggleMenu()"
           />
-          <ul>
-            <li>Collections</li>
-            <li>Men</li>
-            <li>Women</li>
-            <li>About</li>
-            <li>Contact</li>
+        </div>
+
+        <h1 class="header__brand">sneakers</h1>
+        <div class="menu-drawer" id="menu-drawer">
+          <div>
+            <img
+              src="./assets/icons/icon-close.svg"
+              alt="close"
+              class="header__icon"
+              onclick="toggleMenu()"
+            />
+          </div>
+
+          <ul class="menu-drawer__items">
+            <li class="menu-drawer__item">
+              <a class="menu-drawer__link" href="#" title="Collections"
+                >Collections</a
+              >
+            </li>
+            <li class="menu-drawer__item">
+              <a class="menu-drawer__link" href="#" title="Men">Men</a>
+            </li>
+            <li class="menu-drawer__item">
+              <a class="menu-drawer__link" href="#" title="Women">Women</a>
+            </li>
+            <li class="menu-drawer__item">
+              <a class="menu-drawer__link" href="#" title="About">About</a>
+            </li>
+            <li class="menu-drawer__item">
+              <a class="menu-drawer__link" href="#" title="Contact">Contact</a>
+            </li>
           </ul>
         </div>
       </div>
       <div class="header__cart-avt">
-        <div class="header__cart-avt__cart">
-          <img src="./assets/icons/icon-cart.svg" alt="cart icon" />
-          <div class="header__cart-avt__cart__widget">
-            <div class="header__cart-avt__cart__widget__header">Cart</div>
-            <div class="header__cart-avt__cart__widget__body">
-              <p>Your cart is empty</p>
-              <div>
-                <div>
-                  <img
-                    src="./assets/images/image-product-1-thumbnail.jpg"
-                    alt="cart item image"
-                    class="item-image"
-                  />
+        <div class="header__cart">
+          <div>
+            <img src="./assets/icons/icon-cart.svg" alt="cart icon" />
+          </div>
+          <div class="cart-widget">
+            <div class="cart-widget__header">Cart</div>
+            <div class="cart-widget__body">
+              <p class="cart-widget__empty">Your cart is empty</p>
+              <div class="cart-widget__not-empty">
+                <div class="cart-widget__item">
                   <div>
-                    <p>Fall Limited Edition Sneakers</p>
+                    <img
+                      src="./assets/images/image-product-1-thumbnail.jpg"
+                      alt="cart item image"
+                      class="cart-widget__image"
+                    />
+                  </div>
+
+                  <div class="cart-widget__text">
+                    <p class="cart-widget__item-name">
+                      Fall Limited Edition Sneakers
+                    </p>
                     <div>
-                      <span>$125.00 x 3</span>
-                      <span>$375.00</span>
+                      <span class="cart-widget__item-price">$125.00 x 3</span>
+                      <span class="cart-widget__item-price">$375.00</span>
                     </div>
                   </div>
-                  <img
-                    src="./assets/icons/icon-delete.svg"
-                    alt="delete item"
-                    class="delete-item"
-                  />
+                  <div class="cart-widget__delete-item">
+                    <img
+                      src="./assets/icons/icon-delete.svg"
+                      alt="delete item"
+                    />
+                  </div>
                 </div>
-                <button>Checkout</button>
+                <button class="cart-widget__btn">Checkout</button>
               </div>
             </div>
           </div>
         </div>
-
-        <img
-          src="./assets/images/image-avatar.png"
-          alt="avatar image"
-          class="header__cart-avt__avt"
-        />
+        <div>
+          <img
+            src="./assets/images/image-avatar.png"
+            alt="avatar image"
+            class="header__avt"
+          />
+        </div>
       </div>
     </header>
-    <div class="product">
-      <div class="product--viewImage" id="image-modal">
-        <svg
-          class="close-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          onclick="viewImages()"
-        >
-          <path
-            d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
-            fill="#ffffff"
-            fill-rule="evenodd"
-          />
-        </svg>
-        <div class="product__image">
-          <div class="product__image__large">
-            <div class="product__image__large__previous">
-              <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M11 1 3 9l8 8"
-                  stroke="#1D2026"
-                  stroke-width="3"
-                  fill="none"
-                  fill-rule="evenodd"
+    <main class="main">
+      <div class="product">
+        <div class="product__viewImage" id="image-modal">
+          <div class="close-icon">
+            <svg
+              width="18"
+              height="18"
+              xmlns="http://www.w3.org/2000/svg"
+              onclick="toggleViewImages()"
+            >
+              <path
+                d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+                fill="#ffffff"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <div class="product_image">
+            <div class="product__large">
+              <div class="product__icon product__icon--previous">
+                <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1 3 9l8 8"
+                    stroke="#1D2026"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="product image 1"
+                  class="product__large-img"
                 />
-              </svg>
+              </div>
+
+              <div class="product__icon product__icon--next">
+                <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m2 1 8 8-8 8"
+                    stroke="#1D2026"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
             </div>
-            <img
-              src="./assets/images/image-product-1.jpg"
-              alt="product image 1"
-            />
-            <div class="product__image__large__next">
-              <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="m2 1 8 8-8 8"
-                  stroke="#1D2026"
-                  stroke-width="3"
-                  fill="none"
-                  fill-rule="evenodd"
+            <div class="product__small">
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-1-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
                 />
-              </svg>
+              </div>
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-2-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-3-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-4-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
             </div>
           </div>
-          <div class="product__image__small">
-            <div>
-              <img
-                src="./assets/images/image-product-1-thumbnail.jpg"
-                alt="product image 1 thumbnail"
-              />
-            </div>
-            <div>
-              <img
-                src="./assets/images/image-product-2-thumbnail.jpg"
-                alt="product image 1 thumbnail"
-              />
-            </div>
-            <div>
-              <img
-                src="./assets/images/image-product-3-thumbnail.jpg"
-                alt="product image 1 thumbnail"
-              />
-            </div>
-            <div>
-              <img
-                src="./assets/images/image-product-4-thumbnail.jpg"
-                alt="product image 1 thumbnail"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+          <!-- <div class="product-image">
+            <div class="product-image__large">
+              <div class="product-image__icon product-image__icon--previous">
+                <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1 3 9l8 8"
+                    stroke="#1D2026"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="product image 1"
+                  class="product__large-img"
+                />
+              </div>
 
-      <div class="product__image">
-        <div class="product__image__large">
-          <div class="product__image__large__previous">
-            <img
-              src="./assets/icons/icon-previous.svg"
-              alt="to previous image"
-            />
-          </div>
-          <img
-            src="./assets/images/image-product-1.jpg"
-            alt="product image 1"
-            onclick="viewImages()"
-          />
-          <div class="product__image__large__next">
-            <img src="./assets/icons/icon-next.svg" alt="to next image" />
-          </div>
+              <div class="product-image__icon product-image__icon--next">
+                <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m2 1 8 8-8 8"
+                    stroke="#1D2026"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="product-image__small">
+              <div class="product-image__small-container">
+                <img
+                  src="./assets/images/image-product-1-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product-image__small-container">
+                <img
+                  src="./assets/images/image-product-2-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product-image__small-container">
+                <img
+                  src="./assets/images/image-product-3-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product-image__small-container">
+                <img
+                  src="./assets/images/image-product-4-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+            </div>
+          </div> -->
         </div>
-        <div class="product__image__small">
-          <div>
-            <img
-              src="./assets/images/image-product-1-thumbnail.jpg"
-              alt="product image 1 thumbnail"
-            />
-          </div>
-          <div>
-            <img
-              src="./assets/images/image-product-2-thumbnail.jpg"
-              alt="product image 1 thumbnail"
-            />
-          </div>
-          <div>
-            <img
-              src="./assets/images/image-product-3-thumbnail.jpg"
-              alt="product image 1 thumbnail"
-            />
-          </div>
-          <div>
-            <img
-              src="./assets/images/image-product-4-thumbnail.jpg"
-              alt="product image 1 thumbnail"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="product__inf">
-        <p class="product__inf__brand">SNEAKER COMPANY</p>
-        <h2 class="product__inf__name">Fall Limited Edition Sneakers</h2>
-        <p class="product__inf__desc">
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they'll wishstand everythong
-          the weather can offer
-        </p>
-        <div class="product__inf__price">
-          <p class="product__inf__price__new">$125.00</p>
-          <p class="product__inf__price__old">$250.00</p>
-        </div>
+        <div class="product__images">
+          <div class="product__image">
+            <div class="product__large">
+              <div class="product__icon product__icon--previous">
+                <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 1 3 9l8 8"
+                    stroke="#1D2026"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="product image 1"
+                  onclick="toggleViewImages()"
+                  class="product__large-img"
+                />
+              </div>
 
-        <div class="product__inf__btns">
-          <div class="product__inf__btns__quantity">
-            <img src="./assets/icons/icon-minus.svg" alt="icon-minus" />
-            <p>0</p>
-            <img src="./assets/icons/icon-plus.svg" alt="" />
+              <div class="product__icon product__icon--next">
+                <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m2 1 8 8-8 8"
+                    stroke="#1D2026"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="product__small">
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-1-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-2-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-3-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+              <div class="product__small-container">
+                <img
+                  src="./assets/images/image-product-4-thumbnail.jpg"
+                  alt="product image 1 thumbnail"
+                  class="product__small-img"
+                />
+              </div>
+            </div>
           </div>
-          <button class="product__inf__btns__addcart">
-            <img src="./assets/icons/icon-cart-white.svg" alt="" />
-            <p>Add to cart</p>
-          </button>
+        </div>
+        <div class="product__inf-container">
+          <div class="product__inf">
+            <p class="product__brand">SNEAKER COMPANY</p>
+            <h2 class="product__name">Fall Limited Edition Sneakers</h2>
+            <p class="product__desc">
+              These low-profile sneakers are your perfect casual wear companion.
+              Featuring a durable rubber outer sole, they'll wishstand
+              everythong the weather can offer
+            </p>
+            <div class="product__price">
+              <p class="product__new-price">$125.00</p>
+              <p class="product__old-price">$250.00</p>
+            </div>
+
+            <div class="product__btn">
+              <div class="product__quantity">
+                <div class="product__quantity-btn">
+                  <img src="./assets/icons/icon-minus.svg" alt="icon-minus" />
+                </div>
+
+                <p class="product__cur-quantity">0</p>
+                <div class="product__quantity-btn">
+                  <img src="./assets/icons/icon-plus.svg" alt="icon plus" />
+                </div>
+              </div>
+              <button class="product__addcart">
+                <div class="product__cart-icon">
+                  <svg
+                    width="22"
+                    height="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                      fill="#ffffff"
+                      fill-rule="nonzero"
+                    />
+                  </svg>
+                </div>
+                <p>Add to cart</p>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <script>
-      const toggleOverlay = () => {
-        const overlay = document.getElementById("overlay");
-        overlay.classList.toggle("overlay--open");
-      };
-      const toggleMenu = () => {
-        const menuDrawer = document.getElementById("menu-drawer");
-        menuDrawer.classList.toggle("drawerOpen");
-        toggleOverlay();
-        document.body.classList.toggle("not-overflow");
-      };
-      const viewImages = () => {
-        if (window.innerWidth > 1440) {
-          const imageModal = document.getElementById("image-modal");
-          toggleOverlay();
-          imageModal.classList.toggle("image-modal-open");
-          imageModal.classList.toggle("product--viewImage--disAppear");
-        }
-      };
-    </script>
+    </main>
+    <script src="./js/product_detail.js"></script>
   </body>
 </html>

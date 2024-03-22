@@ -1,8 +1,6 @@
-$orange: hsl(26, 100%, 55%);
-$paleOrange: hsl(25, 100%, 94%);
-$veryDarkBlue: hsl(220, 13%, 13%);
-$white: hsl(0, 0%, 100%);
-$black: hsl(0, 0%, 0%);
+@import "mixin";
+@import "color";
+@import "keyframe";
 @import "header";
 @import "header_responsive";
 
@@ -16,236 +14,200 @@ $black: hsl(0, 0%, 0%);
 .hover-opacity:hover {
   opacity: 0.5;
 }
+.close-icon {
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover {
+    path {
+      fill: $orange;
+    }
+  }
+}
+.main {
+  @include size(100%, 80vh);
+  @include flexBox(center, center);
+}
 .product {
-  @include marginX(10vw);
-  margin-top: 60px;
-  margin-bottom: 80px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  width: 60%;
+  @include flexBox(space-between, center);
   position: relative;
-  &--viewImage {
+  &__viewImage {
+    @include flexBox(unset, end);
+    flex-direction: column;
     display: none;
     position: absolute;
     z-index: 5;
     left: 50%;
-    top: -20%;
+    top: -18%;
     transform: translate(-50%, 10%);
-    width: 28vw;
-    height: 80vh;
-    transition: all 0.3s ease;
-    animation: appear 0.5s ease-in-out;
-    > svg {
-      float: right;
-      width: 14px;
-      height: 15px;
-      margin-bottom: 20px;
-      cursor: pointer;
-      &:hover {
-        path {
-          fill: $orange;
-        }
+    @include size(40%, unset);
+    transition: all 0.5s ease;
+    animation: appear 0.5s forwards;
+    .product__icon {
+      display: flex;
+      &--previous {
+        left: -22px;
+      }
+      &--next {
+        right: -22px;
       }
     }
-    .product__image {
-      width: 100%;
-      row-gap: 4%;
-      &__large {
-        div {
-          display: flex;
-          cursor: pointer;
-          &:hover svg {
-            path {
-              stroke: $orange;
-            }
-          }
-        }
-        &__previous {
-          left: -22px;
-        }
-        &__next {
-          right: -22px;
-          img {
-            left: 2px;
-          }
-        }
-      }
-      &__small {
-        justify-content: space-evenly;
-        div {
-          width: 16%;
-          height: 94%;
-          border-radius: 7px;
-          img {
-            border-radius: 5px;
-          }
-        }
-      }
+    .product__small {
+      @include flexBox(space-evenly, unset);
     }
-    &--disAppear {
-      animation: appear 0.3s forwards;
+    .product__small-container {
+      @include size(18%, auto);
+      border-radius: 14px;
+    }
+    .product__small-img {
+      border-radius: 11px;
     }
   }
   .image-modal-open {
-    display: block;
+    display: flex;
+  }
+  &__images {
+    @include size(46%, 100%);
+    flex: 1;
   }
   &__image {
-    width: 36vw;
-    display: grid;
-    grid-template-rows: auto auto;
-    row-gap: 5%;
-    img {
-      cursor: pointer;
-    }
-    &__large {
-      position: relative;
-      div {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: $white;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 30%;
-        }
-      }
-      &__previous {
-        left: 3%;
-      }
-      &__next {
-        right: 3%;
-      }
-      img {
-        width: 100%;
-        border-radius: 5%;
+    width: 80%;
+  }
+  &__large {
+    position: relative;
+    padding-bottom: 20px;
+  }
+  &__large-img {
+    width: 100%;
+    border-radius: 5%;
+    cursor: pointer;
+  }
+  &__small {
+    @include flexBox(space-between, unset);
+  }
+  &__small-container {
+    @include size(20%, auto);
+    border-radius: 18px;
+    background-color: $white;
+    cursor: pointer;
+    &:first-child {
+      border: 4px solid $orange;
+      .product__small-img {
+        opacity: 0.5;
       }
     }
-    &__small {
-      display: flex;
-      justify-content: space-between;
-      div {
-        width: 20%;
-        height: 96%;
-        border-radius: 18px;
-        background-color: $white;
-        img {
-          width: 100%;
-          border-radius: 14px;
-          @extend .hover-opacity;
-        }
-        &:first-child {
-          border: 4px solid $orange;
-          img {
-            opacity: 0.5;
-          }
-        }
+  }
+  &__small-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    @extend .hover-opacity;
+  }
+  &__icon {
+    cursor: pointer;
+    @include size(40px, 40px);
+    border-radius: 50%;
+    background-color: $white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    @include flexBox(center, center);
+    display: none;
+    &:hover svg {
+      path {
+        stroke: $orange;
       }
     }
+    &--previous {
+      left: 3%;
+    }
+    &--next {
+      right: 3%;
+    }
+  }
+
+  &__inf-container {
+    flex: 1;
+    @include flexBox(center, end);
+    flex-direction: column;
   }
   &__inf {
-    width: 36vw;
-    &__brand {
+    width: 90%;
+  }
+  &__brand {
+    color: hsl(26, 100%, 55%);
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+  &__name {
+    font-size: 30px;
+    color: hsl(0, 0%, 0%);
+    padding: 16px 0px;
+  }
+  &__desc {
+    color: hsl(219, 9%, 45%);
+    padding: 14px 0px;
+  }
+  &__price {
+    margin-bottom: 40px;
+  }
+  &__new-price {
+    color: hsl(0, 0%, 0%);
+    font-size: 28px;
+    font-weight: 700;
+    padding: 10px 0px;
+    @include flexBox(unset, center);
+    &::after {
+      content: "50%";
+      font-size: 16px;
       color: hsl(26, 100%, 55%);
-      font-weight: 700;
-      letter-spacing: 3px;
+      background-color: hsl(25, 100%, 94%);
+      margin-left: 20px;
+      @include size(45px, 22px);
+      @include flexBox(center, center);
+      border-radius: 6px;
     }
-    &__name {
-      font-size: 44px;
-      color: hsl(0, 0%, 0%);
-      padding: 20px 0px;
-    }
-    &__desc {
-      color: hsl(219, 9%, 45%);
-      padding: 20px 0px;
-    }
-    &__price {
-      margin-bottom: 50px;
-      &__new {
-        color: hsl(0, 0%, 0%);
-        font-size: 28px;
-        font-weight: 700;
-        padding: 10px 0px;
-        display: flex;
-        align-items: center;
-        &::after {
-          content: "50%";
-          font-size: 16px;
-          color: hsl(26, 100%, 55%);
-          background-color: hsl(25, 100%, 94%);
-          margin-left: 20px;
-          width: 45px;
-          height: 22px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 6px;
-        }
-      }
-      &__old {
-        color: hsl(220, 14%, 75%);
-        font-size: 18px;
-        text-decoration: line-through;
-        font-weight: 400;
-      }
-    }
+  }
+  &__old-price {
+    color: hsl(220, 14%, 75%);
+    font-size: 18px;
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+  &__btn {
+    @include flexBox(space-between, unset);
+  }
+  &__quantity {
+    @include flexBox(space-around, center);
+    flex: 2;
+    margin-right: 5%;
+    font-size: 24px;
+    background-color: $lightGrayishBlue;
+    border-radius: 8px;
+  }
+  &__quantity-btn {
+    @include flexBox(unset, center);
+    @extend .btn;
+    @extend .hover-opacity;
+    padding: 16px 4px;
+  }
+  &__cur-quantity {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  &__addcart {
+    @extend .btn;
+    @extend .hover-opacity;
+    @include flexBox(center, unset);
+    padding: 14px 30px;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(26, 100%, 55%);
+    flex: 3;
+    box-shadow: 0px 26px 30px -10px hsla(26, 100%, 55%, 0.2);
+  }
+  &__cart-icon {
+    margin-right: 20px;
+  }
+}
 
-    &__btns {
-      display: flex;
-      justify-content: space-between;
-      &__quantity {
-        display: flex;
-        flex: 2;
-        align-items: center;
-        justify-content: space-around;
-        margin-right: 5%;
-        font-size: 24px;
-        background-color: $lightGrayishBlue;
-        border-radius: 8px;
-        img {
-          @extend .btn;
-          @extend .hover-opacity;
-        }
-        p {
-          font-size: 20px;
-          font-weight: 400;
-        }
-      }
-      &__addcart {
-        @extend .btn;
-        @extend .hover-opacity;
-        display: flex;
-        justify-content: center;
-        padding: 14px 30px;
-        color: hsl(0, 0%, 100%);
-        background-color: hsl(26, 100%, 55%);
-        flex: 3;
-        box-shadow: 0px 26px 30px -10px hsla(26, 100%, 55%, 0.2);
-        img {
-          margin-right: 20px;
-        }
-      }
-    }
-  }
-}
 @import "product_detail_responsive";
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes disAppear {
-  100% {
-    opacity: 0;
-  }
-  0% {
-    opacity: 1;
-  }
-}

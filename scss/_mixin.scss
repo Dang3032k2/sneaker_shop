@@ -1,0 +1,14 @@
+@mixin marginX($marginX) {
+  margin: 0px $marginX;
+  width: calc(100% - 2 * $marginX);
+}
+
+@mixin flexBox($justifyContent, $alignItem) {
+  display: flex;
+  align-items: $alignItem;
+  justify-content: $justifyContent;
+}
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
